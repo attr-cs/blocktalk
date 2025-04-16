@@ -1,0 +1,76 @@
+/* Add this at the top of your globals.css */
+#root {
+  min-height: 100vh;
+}
+
+#root::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 0;
+}
+
+#root > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Minecraft-style scrollbar */
+.minecraft-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #5c5c5c #1a1a1a;
+}
+
+.minecraft-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.minecraft-scrollbar::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border: 2px solid #000000;
+}
+
+.minecraft-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #5c5c5c;
+  border: 2px solid #000000;
+}
+
+.minecraft-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #7c7c7c;
+}
+
+/* Apply to whole app */
+html {
+  @apply minecraft-scrollbar;
+}
+
+
+/* Add background image with opacity */
+body {
+  background-image: url('/images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Add overlay for opacity */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85); /* Adjust opacity here */
+  z-index: -1;
+}
+
+/* Remove these if they exist */
+.minecraft-interact {
+  /* Remove cursor property if it exists */
+  transition: transform 0.1s ease-in-out;
+} 

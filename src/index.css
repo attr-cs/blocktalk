@@ -1,0 +1,227 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 34 33% 95%;
+    --foreground: 20 14% 25%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 14% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14% 25%;
+
+    --primary: 124 52% 31%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 50% 30%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 30 10% 92%;
+    --muted-foreground: 20 14% 45%;
+
+    --accent: 220 60% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 30 15% 85%;
+    --input: 30 15% 85%;
+    --ring: 124 52% 31%;
+
+    --radius: 0px;
+  }
+}
+
+@font-face {
+  font-family: 'MinecraftFont';
+  src: url('/fonts/minecraft.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PixelFont';
+  src: url('/fonts/pixel.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    image-rendering: pixelated;
+  }
+}
+
+@layer components {
+  .minecraft-btn {
+    @apply relative bg-minecraft-stone border-2 border-black font-minecraft text-white p-2 hover:bg-minecraft-stone/90 transition-colors;
+    image-rendering: pixelated;
+  }
+  
+  .minecraft-btn::before {
+    @apply content-[""] absolute inset-0 border-t-2 border-l-2 border-white/30 border-r-2 border-b-2 border-black/50;
+  }
+  
+  .minecraft-container {
+    @apply border-2 border-black bg-white relative;
+  }
+  
+  .minecraft-container::before {
+    @apply content-[""] absolute inset-0 border-t-2 border-l-2 border-white/30 border-r-2 border-b-2 border-black/20;
+  }
+  
+  .pixel-transition {
+    transition: all 0.3s steps(5, end);
+  }
+  
+  .pixel-shadow {
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Minecraft Animation Classes */
+  .minecraft-break {
+    animation: break-animation 0.4s steps(4, end);
+  }
+  
+  .minecraft-place {
+    animation: place-animation 0.3s steps(3, end);
+  }
+  
+  .minecraft-pop {
+    animation: pop-animation 0.4s ease-out;
+  }
+  
+  .hover-grow {
+    transition: transform 0.2s steps(2, end);
+  }
+  
+  .hover-grow:hover {
+    transform: scale(1.05);
+  }
+  
+  .active-press {
+    transition: transform 0.1s steps(1, end);
+  }
+  
+  .active-press:active {
+    transform: scale(0.95);
+  }
+  
+  /* Block building animation for components */
+  .block-appear {
+    animation: block-appear 0.5s steps(5, end);
+  }
+  
+  /* Minecraft-style button interaction */
+  .minecraft-interact {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .minecraft-interact::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s steps(2, end);
+  }
+  
+  .minecraft-interact:hover::after {
+    opacity: 1;
+  }
+  
+  .minecraft-interact:active::after {
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Minecraft Animation Keyframes */
+@keyframes break-animation {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5) rotate(10deg);
+  }
+}
+
+@keyframes place-animation {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pop-animation {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes block-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes block-build {
+  from { transform: translateY(1rem); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Floating animation for hover effects */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
