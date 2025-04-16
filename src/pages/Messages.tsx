@@ -150,7 +150,7 @@ const Messages: React.FC = () => {
       <div 
         className="fixed inset-0 z-0" 
         style={{ 
-          backgroundImage: 'url(/background.jpg)',
+         // backgroundImage: 'url(/background.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: '1'
